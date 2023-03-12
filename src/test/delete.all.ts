@@ -1,8 +1,8 @@
 import { Controller, Delete, HttpCode } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { List, ListDocument } from './list/domain/entities/list.entity';
+import { List, ListDocument } from '../list/domain/entities/list.entity';
 import { Model } from 'mongoose';
-import { CitiesDocument, City } from './cities/domain/entities/cities.entity';
+import { CitiesDocument, City } from '../cities/domain/entities/cities.entity';
 
 @Controller()
 export class DeleteController {

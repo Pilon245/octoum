@@ -1,42 +1,36 @@
 import { Injectable } from '@nestjs/common';
 import { Model } from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
-import { CitiesDocument, City } from '../domain/entities/cities.entity';
 import { List, ListDocument } from '../domain/entities/list.entity';
-import {
-  CityFactory,
-  CreateCitiesDTO,
-  UpdateCitiesDTO,
-} from '../domain/dto/cities.dto';
+import { ListFactory, UpdateListDTO } from '../domain/dto/list.dto';
 
 @Injectable()
-export class CitiesRepository {
-  constructor(
-    @InjectModel(City.name) private cityModel: Model<CitiesDocument>,
-    @InjectModel(List.name) private listModel: Model<ListDocument>,
-  ) {}
+export class ListRepository {
+  constructor(@InjectModel(List.name) private listModel: Model<ListDocument>) {}
   async findByName(name: string) {
-    return this.cityModel.findOne({
-      city: name,
+    return this.listModel.findOne({
+      shortName: name,
     });
   }
-  async create(city: CityFactory) {
-    const createCity = await new this.cityModel(city);
-    await createCity.save();
-    return city;
+  async create(list: ListFactory) {
+    const createList = await new this.listModel(list);
+    await createList.save();
+    return list;
   }
-  async update(id: string, model: UpdateCitiesDTO) {
-    const result = await this.cityModel.updateOne(
+  async update(id: string, model: UpdateListDTO) {
+    const result = await this.listModel.updateOne(
       { id },
       {
-        city: model.city,
-        date: model.date,
+        shortName: model.shortName,
+        longName: model.longName,
+        color: model.color,
+        cities: model.cities,
       },
     );
     return result.matchedCount === 1;
   }
   async delete(id: string) {
-    const result = await this.cityModel.deleteOne({ id });
+    const result = await this.listModel.deleteOne({ id });
     return result.deletedCount === 1;
   }
 }

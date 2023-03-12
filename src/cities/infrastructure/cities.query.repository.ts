@@ -1,15 +1,12 @@
 import { Injectable } from '@nestjs/common';
 import { Model } from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
-import { CitiesDocument, City } from './domain/entities/cities.entity';
-import { List, ListDocument } from './domain/entities/list.entity';
-import { CityFactory, CreateCitiesDTO } from './domain/dto/cities.dto';
+import { CitiesDocument, City } from '../domain/entities/cities.entity';
 
 @Injectable()
 export class CitiesQueryRepository {
   constructor(
     @InjectModel(City.name) private cityModel: Model<CitiesDocument>,
-    @InjectModel(List.name) private listModel: Model<ListDocument>,
   ) {}
   async findAll() {
     const cities = await this.cityModel.find();
@@ -29,6 +26,16 @@ export class CitiesQueryRepository {
       id: cities.id,
       city: cities.city,
       date: cities.date,
+    };
+  }
+
+  async findByName(city: string) {
+    const list = await this.cityModel.findOne({
+      city,
+    });
+    if (!list) return false;
+    return {
+      id: list.id,
     };
   }
 }

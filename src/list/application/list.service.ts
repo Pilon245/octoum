@@ -1,26 +1,29 @@
-import { BadRequestException, Injectable } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { randomUUID } from 'crypto';
-import { CitiesRepository } from '../infrastructure/cities.repository';
+import { ListRepository } from '../infrastructure/list.repository';
 import {
-  CityFactory,
-  CreateCitiesDTO,
-  UpdateCitiesDTO,
-} from '../domain/dto/cities.dto';
-import { CitiesQueryRepository } from '../infrastructure/cities.query.repository';
+  CreateListDTO,
+  ListFactory,
+  UpdateListDTO,
+} from '../domain/dto/list.dto';
 
 @Injectable()
-export class CitiesService {
-  constructor(private citiesRepository: CitiesRepository) {}
-  async createCity(model: CreateCitiesDTO) {
-    const foundCity = await this.citiesRepository.findByName(model.city);
-    if (foundCity) throw new BadRequestException('City is Created');
-    const city = new CityFactory(randomUUID(), model.city, model.date);
-    return await this.citiesRepository.create(city);
+export class ListService {
+  constructor(private listRepository: ListRepository) {}
+  async createList(model: CreateListDTO) {
+    const list = new ListFactory(
+      randomUUID(),
+      model.shortName,
+      model.longName,
+      model.color,
+      model.cities,
+    );
+    return await this.listRepository.create(list);
   }
-  async updateCity(id: string, model: UpdateCitiesDTO) {
-    return this.citiesRepository.update(id, model);
+  async updateList(id: string, model: UpdateListDTO) {
+    return this.listRepository.update(id, model);
   }
-  async deleteCity(id: string) {
-    return this.citiesRepository.delete(id);
+  async deleteList(id: string) {
+    return this.listRepository.delete(id);
   }
 }

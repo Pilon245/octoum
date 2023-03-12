@@ -1,26 +1,32 @@
 import { Injectable } from '@nestjs/common';
-import { BlogsQueryRepository } from '../../blogs/infrastructure/blogs.query.repository';
 import {
   ValidationArguments,
   ValidatorConstraint,
   ValidatorConstraintInterface,
 } from 'class-validator';
-import { BlogsSqlQueryRepository } from '../../blogs/infrastructure/blogs.sql.query.repository';
+import { CitiesQueryRepository } from '../../cities/infrastructure/cities.query.repository';
 
-@ValidatorConstraint({ name: 'BloggerExists', async: true })
+@ValidatorConstraint({ name: 'ListExists', async: true })
 @Injectable()
-export class BloggerExistsRule implements ValidatorConstraintInterface {
-  constructor(private blogsQueryRepository: BlogsSqlQueryRepository) {}
-  async validate(value: string) {
+export class ListExistsRule implements ValidatorConstraintInterface {
+  constructor(private citiesQueryRepository: CitiesQueryRepository) {}
+  async validate(value: Array<string>) {
     try {
-      const result = await this.blogsQueryRepository.findBlogById(value);
-      if (!result) return false;
+      const error = await Promise.all(
+        value.map(async (c) => {
+          const result = await this.citiesQueryRepository.findByName(c);
+          if (!result) return false;
+          return true;
+        }),
+      );
+      const test = error.filter((p) => p == false);
+      if (test[0] === false) return false;
       return true;
     } catch (e) {
       return false;
     }
   }
   defaultMessage(args: ValidationArguments) {
-    return `Blog doesn't exist`;
+    return `Cities doesn't exist`;
   }
 }

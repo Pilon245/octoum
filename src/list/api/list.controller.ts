@@ -9,38 +9,37 @@ import {
   Param,
   Post,
   Put,
-  Query,
 } from '@nestjs/common';
-import { CitiesService } from '../application/cities.service';
-import { CreateCitiesDTO, UpdateCitiesDTO } from '../domain/dto/cities.dto';
-import { CitiesQueryRepository } from '../infrastructure/cities.query.repository';
+import { ListService } from '../application/list.service';
+import { ListQueryRepository } from '../infrastructure/list.query.repository';
+import { CreateListDTO, UpdateListDTO } from '../domain/dto/list.dto';
 
-@Controller('city')
-export class CitiesController {
+@Controller('list')
+export class ListController {
   constructor(
-    private readonly citiesService: CitiesService,
-    private citiesQueryRepository: CitiesQueryRepository,
+    private readonly listService: ListService,
+    private listQueryRepository: ListQueryRepository,
   ) {}
   @Get()
   async findAll() {
-    return this.citiesQueryRepository.findAll();
+    return this.listQueryRepository.findAll();
   }
 
   @Get(':id')
   async findById(@Param('id') id) {
-    const found = await this.citiesQueryRepository.findById(id);
-    if (!found) throw new BadRequestException('City is Not Found');
+    const found = await this.listQueryRepository.findById(id);
+    if (!found) throw new BadRequestException('List is Not Found');
     return found;
   }
 
   @Post()
-  async createCity(@Body() model: CreateCitiesDTO) {
-    return this.citiesService.createCity(model);
+  async createList(@Body() model: CreateListDTO) {
+    return this.listService.createList(model);
   }
   @HttpCode(204)
   @Put(':id')
-  async updateCity(@Param('id') id, @Body() model: UpdateCitiesDTO) {
-    const result = await this.citiesService.updateCity(id, model);
+  async updateList(@Param('id') id, @Body() model: UpdateListDTO) {
+    const result = await this.listService.updateList(id, model);
     if (!result) {
       throw new HttpException('Incorrect Not Found', 404);
     }
@@ -48,8 +47,8 @@ export class CitiesController {
   }
   @HttpCode(204)
   @Delete(':id')
-  async deleteCity(@Param('id') id) {
-    const result = await this.citiesService.deleteCity(id);
+  async deleteList(@Param('id') id) {
+    const result = await this.listService.deleteList(id);
     if (!result) {
       throw new HttpException('Incorrect Not Found', 404);
     }
