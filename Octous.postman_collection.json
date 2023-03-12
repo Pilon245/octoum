@@ -1,0 +1,306 @@
+{
+	"info": {
+		"_postman_id": "fe6df535-991f-4695-810b-504470fe51d4",
+		"name": "Octous",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "23342989"
+	},
+	"item": [
+		{
+			"name": "City",
+			"item": [
+				{
+					"name": "City",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"city\": \"SPB\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/city",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"city"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "City By Id",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"city\": \"SPB\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/city/8ba017dd-e387-4549-96e3-7b479f26a010",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"city",
+								"8ba017dd-e387-4549-96e3-7b479f26a010"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "City",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"city\": \"SPB\",\r\n    \"date\": \"1982 Год\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/city",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"city"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "City",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"city\": \"SPB\",\r\n    \"date\": \"1982 Год\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/city/1aa89f3f-bd3e-4bdd-97d4-e5b24ad74fb9",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"city",
+								"1aa89f3f-bd3e-4bdd-97d4-e5b24ad74fb9"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "City",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"city\": \"SPB21d\",\r\n    \"date\": \"1982 Год\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/city/1aa89f3f-bd3e-4bdd-97d4-e5b24ad74fb9",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"city",
+								"1aa89f3f-bd3e-4bdd-97d4-e5b24ad74fb9"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "List",
+			"item": [
+				{
+					"name": "List",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"city\": \"SPB\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/list",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"list"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List By Id",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"city\": \"SPB\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/list/94ba2fe4-4551-4bfb-aa7f-857d294485cc",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"list",
+								"94ba2fe4-4551-4bfb-aa7f-857d294485cc"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"shortName\": \"Asia\",\r\n  \"longName\": \"FullAsia\",\r\n  \"color\": \"Зелёный\",\r\n  \"cities\": [\"SPB\", \"Moscow\"]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/list",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"list"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"shortName\": \"Asia\",\r\n  \"longName\": \"FullAsia\",\r\n  \"color\": \"Зелёный\",\r\n  \"cities\": [\"Moscow\", \"SPB\"]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/list/10125c12-b28b-4979-9f42-1af6b9202be5",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"list",
+								"10125c12-b28b-4979-9f42-1af6b9202be5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/list/94ba2fe4-4551-4bfb-aa7f-857d294485cc",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"list",
+								"94ba2fe4-4551-4bfb-aa7f-857d294485cc"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "TEST Delete All DATA",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/delete-all",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"delete-all"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
