@@ -25,6 +25,23 @@ export class ListExistsRule implements ValidatorConstraintInterface {
     } catch (e) {
       return false;
     }
+
+    // let errorID: number | undefined = undefined;
+    // const arrPromise = model.dto_id.map(async ({ id }) => {
+    //   const data = await this.orm.table.findOne({
+    //     where: { id: BigInt(id) },
+    //   });
+    //   if (data === null) {
+    //     errorID = id;
+    //   }
+    //   return data;
+    // });
+    //
+    // await Promise.all(arrPromise);
+    //
+    // if (Number.isInteger(errorID)) {
+    //   throw new BadRequestException(CATEGORY_NOT_FOUND);
+    // }
   }
   defaultMessage(args: ValidationArguments) {
     return `Cities doesn't exist`;
